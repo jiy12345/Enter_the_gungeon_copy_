@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="JDevice">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <Members>
+      <Method Name="~JDevice" Hidden="true" />
+      <Method Name="frame" Hidden="true" />
+      <Method Name="init" Hidden="true" />
+      <Method Name="JDevice" Hidden="true" />
+      <Method Name="operator=" Hidden="true" />
+      <Method Name="release" Hidden="true" />
+      <Method Name="render" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="JSingleton&lt;T&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.25" Y="1.603" />
+        <Point X="8.25" Y="2.137" />
+        <Point X="1.25" Y="2.137" />
+        <Point X="1.25" Y="2.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>ERAAAIAIgBBAIAAICAAAAAAAAAAAAgICAAAgAQAQAAA=</HashCode>
+      <FileName>JDevice.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JGameEngine">
+    <Position X="9.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQEAAgAAABAAAAAAAAAAAAAAAAAAAAIAAAgAARCQAAA=</HashCode>
+      <FileName>JGameEngine.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_Writer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JInput">
+    <Position X="2.5" Y="2.5" Width="1.5" />
+    <Members>
+      <Method Name="~JInput" Hidden="true" />
+      <Method Name="JInput" Hidden="true" />
+      <Method Name="operator=" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAABAAAAAAAAAAAAAAAAQAABAACAIAAAAggQAQAAA=</HashCode>
+      <FileName>JInput.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JSingleton&lt;T&gt;">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>JSingleton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JTimer">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <Members>
+      <Method Name="~JTimer" Hidden="true" />
+      <Method Name="frame" Hidden="true" />
+      <Method Name="init" Hidden="true" />
+      <Method Name="JTimer" Hidden="true" />
+      <Method Name="operator=" Hidden="true" />
+      <Method Name="release" Hidden="true" />
+      <Method Name="render" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAIAAAAAAAAAAAAAAAQBAAIAAJQgAQAQAEQ=</HashCode>
+      <FileName>JTimer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWindow">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <Members>
+      <Method Name="~JWindow" Hidden="true" />
+      <Method Name="frame" Hidden="true" />
+      <Method Name="init" Hidden="true" />
+      <Method Name="JWindow" Hidden="true" />
+      <Method Name="operator=" Hidden="true" />
+      <Method Name="release" Hidden="true" />
+      <Method Name="render" Hidden="true" />
+      <Method Name="run" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="JSingleton&lt;T&gt;" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.25" Y="1.603" />
+        <Point X="8.25" Y="2.137" />
+        <Point X="5.312" Y="2.137" />
+        <Point X="5.312" Y="2.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>GAAAAgAAACAgAAUQAAAAAAAABAAAAAIAAAggAQSwAAQ=</HashCode>
+      <FileName>JWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JWriter">
+    <Position X="6.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAYAARBAAIAQAAIAAAAAAQAQAAA=</HashCode>
+      <FileName>JWriter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JBaseObject">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <Members>
+      <Method Name="~JBaseObject" Hidden="true" />
+      <Method Name="frame" Hidden="true" />
+      <Method Name="init" Hidden="true" />
+      <Method Name="postRender" Hidden="true" />
+      <Method Name="preRender" Hidden="true" />
+      <Method Name="release" Hidden="true" />
+      <Method Name="render" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ERIAABAAACghIEIAQwwAEIAAAAgRgEMCiAAQAQESgAA=</HashCode>
+      <FileName>JBaseObject.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_rtUV" />
+      <Field Name="m_rtArea" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JShaderManager">
+    <Position X="8.5" Y="2.5" Width="1.5" />
+    <Members>
+      <Method Name="~JShaderManager" Hidden="true" />
+      <Method Name="JShaderManager" Hidden="true" />
+      <Method Name="operator=" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACBAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAgAhAAAiA=</HashCode>
+      <FileName>JShaderManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JTextureManager">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <Members>
+      <Method Name="~JTextureManager" Hidden="true" />
+      <Method Name="JTextureManager" Hidden="true" />
+      <Method Name="operator=" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAEAABAEQAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>JTextureManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JVector&lt;n&gt;">
+    <Position X="4.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAQABAAAEAAAQAAAAEAAAAAAAAgAAAAQAA=</HashCode>
+      <FileName>JVector.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JSoundChannel">
+    <Position X="12.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAIAAAAAAAAAAACAAAAAAAAAAACA=</HashCode>
+      <FileName>JSoundManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JSoundManager">
+    <Position X="12.5" Y="2.5" Width="1.5" />
+    <Members>
+      <Method Name="~JSoundManager" Hidden="true" />
+      <Method Name="JSoundManager" Hidden="true" />
+      <Method Name="operator=" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>GAAAAAAIAIAAkAgAAAAgAAAADACgAAIEAAAgAQAAIAQ=</HashCode>
+      <FileName>JSoundManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JSpriteManager">
+    <Position X="14.5" Y="2.5" Width="1.5" />
+    <Members>
+      <Method Name="~JSpriteManager" Hidden="true" />
+      <Method Name="JSpriteManager" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAIAAAAABAAAAAAAABAEAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>JSpriteManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JCamera">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <Members>
+      <Method Name="~JCamera" Hidden="true" />
+      <Method Name="JCamera" Hidden="true" />
+      <Method Name="operator=" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIEEAAAAAAAAAAAACAgAAAAAAA=</HashCode>
+      <FileName>JCamera.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JDXState">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GAgAAAAAAAAAAAAAAAAAAYAAAEAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>JDXState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="SimpleVertex">
+    <Position X="2.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAEQAAAAAAAA=</HashCode>
+      <FileName>JBaseObject.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="JTexture">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAEAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>JTextureManager.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="nCube&lt;n&gt;">
+    <Position X="2.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAABAAgAAAAAQAAgAAAAAAAAAEIAAAAAAA=</HashCode>
+      <FileName>JShape.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="nSphere&lt;n&gt;">
+    <Position X="2.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAgAAAAAg=</HashCode>
+      <FileName>JShape.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="JSprite">
+    <Position X="14.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAACgAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>JSpriteManager.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="KeyState">
+    <Position X="2.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAgAAAAAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>JInput.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

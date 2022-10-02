@@ -3,7 +3,7 @@
 #include "JGameEngine.h"
 #include "JUser.h"
 
-class Test : public JGameEngine
+class EnterTheGungeon : public JGameEngine
 {
 	JUser* m_pUser;
 	JBaseObject* m_pMapObject;

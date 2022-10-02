@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="EnterTheGungeon.cpp" />
+    <ClCompile Include="JBaseCharacter.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="JUser.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="JGun.cpp">
+      <Filter>Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="JEnemy.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EnterTheGungeon.h" />
+    <ClInclude Include="JBaseCharacter.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="JUser.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="JGun.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="JEnemy.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="_RAINBOW.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="DefaulTextureShader.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Weapons">
+      <UniqueIdentifier>{0d28c5a2-c6d1-4e66-a4f8-728e2d4874ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters">
+      <UniqueIdentifier>{57ed8f03-b4dd-4c83-bdea-7afb2bb42654}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

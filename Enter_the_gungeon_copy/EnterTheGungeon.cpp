@@ -1,5 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "Test.h"
+#include "EnterTheGungeon.h"
 
 #define WINDOW_SIZE_X 1024
 #define WINDOW_SIZE_Y 768
@@ -16,7 +16,7 @@ int APIENTRY wWinMain(
 	freopen("CON", "w", stdout);
 #endif
 	I_Window.setWindow(hInstance, WINDOW_NAME, WINDOW_SIZE_X, WINDOW_SIZE_Y);
-	Test test;
+	EnterTheGungeon test;
 	test.run();
 #ifdef _DEBUG
 	FreeConsole();
@@ -24,7 +24,7 @@ int APIENTRY wWinMain(
 	return 0;
 }
 
-bool Test::init()
+bool EnterTheGungeon::init()
 {
 	m_pUser = new JUser;
 	m_pMapObject = new JBaseObject;
@@ -43,7 +43,7 @@ bool Test::init()
 	return true;
 }
 
-bool Test::frame()
+bool EnterTheGungeon::frame()
 {
 	if (I_Input.GetKey(VK_HOME) == KEY_PUSH)
 	{
@@ -74,14 +74,14 @@ bool Test::frame()
 	return true;
 }
 
-bool Test::render()
+bool EnterTheGungeon::render()
 {
 	m_pMapObject->render();
 	m_pUser->render();
 	return true;
 }
 
-bool Test::release()
+bool EnterTheGungeon::release()
 {
 	m_pUser->release();
 	m_pMapObject->release();

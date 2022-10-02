@@ -3,6 +3,8 @@
 bool JUser::init()
 {
     JBaseObject::init();
+    m_rtArea.Set({ 0, 0 }, { 30, 40 });
+    m_wstrTextureName = L"../data/sprites/pilot.png";
     I_Sprite.load(m_vSpriteInfo, L"../data/sprites/pilot.txt");
     return false;
 }

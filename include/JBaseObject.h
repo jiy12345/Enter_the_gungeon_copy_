@@ -64,11 +64,5 @@ protected:
 	bool				preRender();
 	bool				postRender();
 public:
-	JBaseObject() {
-		m_wstrTextureName = L"../data/sprites/pilot.png";
-		m_rtUV.Set({ 0 / 988.0f, 24 / 811.0f }, { 15 / 988.0f, 22 / 811.0f });
-		float ratio = 15 / 22.0f;
-		m_rtArea.Set({ 0, 0 }, { 40 * ratio, 40 });
-	}
 	virtual				 ~JBaseObject();
 };

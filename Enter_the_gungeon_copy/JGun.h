@@ -17,5 +17,6 @@ class JGun : public JBaseObject
 	int m_iCurNumShots;
 public:
 	bool init() override;
+	bool frame() override;
 };
 

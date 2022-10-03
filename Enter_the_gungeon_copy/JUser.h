@@ -43,9 +43,12 @@ public:
 public:
 	bool init() override;
 	bool frame() override;
+	bool render() override;
 public:
 	void setIdleSprite();
 	void setWalkSprite();
 	void setRollSprite();
+public:
+	void gunFrame();
 };
 

@@ -4,7 +4,7 @@
 bool JUser::init()
 {
     JBaseObject::init();
-    m_rtArea.Set({ 0, 0 }, { 25, 40 });
+    m_rtArea.Set({ 0, 0 }, { 28, 40 });
     m_wstrTextureName = L"../data/sprites/pilot.png";
     I_Sprite.load(m_vSpriteInfo, L"../data/sprites/pilot.txt");
     m_fSpeed = 300.0f;
@@ -16,7 +16,6 @@ bool JUser::init()
 
 bool JUser::frame()
 {
-    m_pGun->m_rtArea.Set(m_rtArea.m_vLeftTop + JVector<2>(3, 0), { 10, 10 });
     if (m_bIsRoll == true) {
         if (m_iIndexOfSprite >= m_vSpriteInfo->at(m_curSprite).m_iNumFrame - 1) {
             m_bIsRoll = false;
@@ -59,9 +58,18 @@ bool JUser::frame()
         setRollSprite();
     }
 
+    gunFrame();
+
     if (m_vDirection.length() != 0) m_vDirection.normalize();
     m_rtArea.m_vLeftTop += m_vDirection * I_Timer.m_fElapseTimer * m_fSpeed;
     m_fStep = m_vSpriteInfo->at(m_curSprite).m_fTotalTime / m_vSpriteInfo->at(m_curSprite).m_iNumFrame;
+    return true;
+}
+
+bool JUser::render()
+{
+    JBaseObject::render();
+    if (m_pGun&& m_bIsRoll == false) m_pGun->render();
     return true;
 }
 
@@ -89,26 +97,29 @@ void JUser::setIdleSprite() {
 
 void JUser::setWalkSprite()
 {
-    switch (m_iDirection) {
-    case DOWN:
-        m_curSprite = WALKING_DOWN;
-        break;
-    case RIGHT: case DOWN_RIGHT:
-        m_curSprite = WALKING_RIGHT;
-        break;
-    case LEFT: case DOWN_LEFT:
-        m_curSprite = WALKING_LEFT;
-        break;
-    case UP:
-        m_curSprite = WALKING_UP;
-        break;
-    case RIGHT_UP:
-        m_curSprite = WALKING_RIGHT_UP;
-        break;
-    case LEFT_UP:
-        m_curSprite = WALKING_LEFT_UP;
-        break;
+    if (m_vDirection.length() != 0) {
+        m_curSprite += 6;
     }
+    //switch (m_iDirection) {
+    //case DOWN:
+    //    m_curSprite = WALKING_DOWN;
+    //    break;
+    //case RIGHT: case DOWN_RIGHT:
+    //    m_curSprite = WALKING_RIGHT;
+    //    break;
+    //case LEFT: case DOWN_LEFT:
+    //    m_curSprite = WALKING_LEFT;
+    //    break;
+    //case UP:
+    //    m_curSprite = WALKING_UP;
+    //    break;
+    //case RIGHT_UP:
+    //    m_curSprite = WALKING_RIGHT_UP;
+    //    break;
+    //case LEFT_UP:
+    //    m_curSprite = WALKING_LEFT_UP;
+    //    break;
+    //}
 }
 
 void JUser::setRollSprite()
@@ -133,4 +144,20 @@ void JUser::setRollSprite()
         m_curSprite = ROLLING_LEFT_UP;
         break;
     }
+}
+
+void JUser::gunFrame()
+{
+    m_pGun->m_rtArea.m_vLeftTop = m_rtArea.m_vLeftTop;
+    if (-90 < m_fAngle && m_fAngle <= 90) {
+        m_pGun->m_curSprite = GUN_RIGHT_IDLE;
+        m_pGun->m_rtArea.m_vLeftTop[0] += m_rtArea.m_vSize[0] * (3 / 4.0f);
+    }
+    else {
+        m_pGun->m_curSprite = GUN_LEFT_IDLE;
+        m_pGun->m_rtArea.m_vLeftTop[0] -= m_rtArea.m_vSize[0] * (3 / 4.0f);
+    }
+    m_pGun->m_rtArea.m_vLeftTop[1] += m_rtArea.m_vSize[1] * (2 / 5.0f);
+
+    m_pGun->frame();
 }

@@ -11,6 +11,8 @@ public:
 	JVector<2>	m_vDirection;
 public:
 	int		m_iHp;
-	JGun	m_gun;
+	JGun*	m_pGun;
+public:
+	bool	render() override;
 };
 

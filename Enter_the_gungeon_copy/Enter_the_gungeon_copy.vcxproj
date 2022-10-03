@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="gr_black_revolver.h" />
     <ClInclude Include="JBaseCharacter.h" />
     <ClInclude Include="JEnemy.h" />
     <ClInclude Include="JGun.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="EnterTheGungeon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="gr_black_revolver.cpp" />
     <ClCompile Include="JBaseCharacter.cpp" />
     <ClCompile Include="JEnemy.cpp" />
     <ClCompile Include="JGun.cpp" />

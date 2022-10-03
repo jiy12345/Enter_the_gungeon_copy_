@@ -162,8 +162,28 @@ void JBaseObject::updateVertexBuffer()
 	m_VertexList[3].p = { rtNDC.m_vLeftTop[0] + rtNDC.m_vSize[0],  rtNDC.m_vLeftTop[1], 0.0f };
 	m_VertexList[3].t = { m_rtUV.m_vLeftTop[0] + m_rtUV.m_vSize[0], m_rtUV.m_vLeftTop[1] + m_rtUV.m_vSize[1] };
 
+	rotate(rtNDC);
+
 	I_Device.m_pImmediateContext->UpdateSubresource(
 		m_pVertexBuffer, NULL, NULL, &m_VertexList.at(0), 0, 0);
+}
+
+
+void JBaseObject::rotate(nCube<2> rtNDC)
+{
+	JVector<3> vCenter;
+	vCenter[0] = rtNDC.vCenter()[0];
+	vCenter[1] = rtNDC.vCenter()[1];
+
+	float fRadian = DegreeToRadian(m_fRotateAngle);
+	JVector<3> vRot;
+	for (int vertex = 0; vertex < 4; vertex++)
+	{
+		JVector<3> vCenterMove = m_VertexList[vertex].p - vCenter;
+		vRot[0] = vCenterMove[0] * cos(fRadian) - vCenterMove[1] * sin(fRadian);
+		vRot[1] = vCenterMove[0] * sin(fRadian) + vCenterMove[1] * cos(fRadian);
+		m_VertexList[vertex].p = vRot + vCenter;
+	}
 }
 
 bool JBaseObject::init()

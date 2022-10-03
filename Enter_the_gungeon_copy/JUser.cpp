@@ -1,4 +1,5 @@
 #include "JUser.h"
+#include "gr_black_revolver.h"
 
 bool JUser::init()
 {
@@ -7,11 +8,15 @@ bool JUser::init()
     m_wstrTextureName = L"../data/sprites/pilot.png";
     I_Sprite.load(m_vSpriteInfo, L"../data/sprites/pilot.txt");
     m_fSpeed = 300.0f;
+
+    m_pGun = new gr_black_revolver;
+    m_pGun->init();
     return false;
 }
 
 bool JUser::frame()
 {
+    m_pGun->m_rtArea.Set(m_rtArea.m_vLeftTop + JVector<2>(3, 0), { 10, 10 });
     if (m_bIsRoll == true) {
         if (m_iIndexOfSprite >= m_vSpriteInfo->at(m_curSprite).m_iNumFrame - 1) {
             m_bIsRoll = false;

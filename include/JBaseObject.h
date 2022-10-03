@@ -24,6 +24,8 @@ public:
 	float					m_fEffectTimer = 0.0f;
 	std::vector<JSprite>*	m_vSpriteInfo;
 public:
+	float					m_fRotateAngle;
+public:
 	nCube<2>				m_rtUV;
 	nCube<2>				m_rtArea;
 public:
@@ -55,6 +57,7 @@ public:
 	virtual HRESULT     createVertexLayout();
 	virtual void		updateUVCoord();
 	virtual void		updateVertexBuffer();
+	virtual void		rotate(nCube<2> rtNDC);
 public:
 	virtual bool		init();
 	virtual bool		frame();

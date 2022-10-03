@@ -48,7 +48,6 @@ bool EnterTheGungeon::frame()
 	if (I_Input.GetKey(VK_HOME) == KEY_PUSH)
 	{
 		for (JSoundChannel*& curGunshot : m_pGunShots) {
-			Sleep(10);
 			I_Sound.playEffect(curGunshot, false);
 		}
 	}

@@ -11,7 +11,9 @@
     <ClCompile Include="JGun.cpp">
       <Filter>Weapons</Filter>
     </ClCompile>
-    <ClCompile Include="JEnemy.cpp" />
+    <ClCompile Include="JEnemy.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnterTheGungeon.h" />
@@ -24,7 +26,9 @@
     <ClInclude Include="JGun.h">
       <Filter>Weapons</Filter>
     </ClInclude>
-    <ClInclude Include="JEnemy.h" />
+    <ClInclude Include="JEnemy.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="_RAINBOW.bmp" />

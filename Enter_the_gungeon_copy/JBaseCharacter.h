@@ -5,7 +5,12 @@
 
 class JBaseCharacter: public JBaseObject
 {
-	int m_iHp;
-	JGun m_gun;
+public:
+	float		m_fAngle;
+	int			m_iDirection;
+	JVector<2>	m_vDirection;
+public:
+	int		m_iHp;
+	JGun	m_gun;
 };
 

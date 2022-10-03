@@ -9,22 +9,43 @@ enum SPRITE {
 	IDLE_UP,
 	IDLE_RIGHT_UP,
 	IDLE_LEFT_UP,
-	IDLE_WITH_WEAPON_DOWN_RIGHT,
-	IDLE_WITH_WEAPON_DOWN_LEFT,
-	IDLE_WITH_WEAPON_RIGHT,
-	IDLE_WITH_WEAPON_LEFT,
-	IDLE_WITH_WEAPON_UP_RIGHT,
-	IDLE_WITH_WEAPON_UP_LEFT,
-	IDLE_WITH_WEAPON_RIGHT_UP,
-	IDLE_WITH_WEAPON_LEFT_UP,
+	WALKING_DOWN,
+	WALKING_RIGHT,
+	WALKING_LEFT,
+	WALKING_UP,
+	WALKING_RIGHT_UP,
+	WALKING_LEFT_UP,
+	ROLLING_DOWN,
+	ROLLING_RIGHT,
+	ROLLING_LEFT,
+	ROLLING_UP,
+	ROLLING_RIGHT_UP,
+	ROLLING_LEFT_UP,
+};
+
+enum MOVE_DIRECTION {
+	NO_DIRECTION = 0b0000,
+	UP = 0b0001,
+	DOWN = 0b0010,
+	LEFT = 0b0100,
+	RIGHT = 0b1000,
+	DOWN_RIGHT = DOWN | RIGHT,
+	DOWN_LEFT = DOWN | LEFT,
+	RIGHT_UP = RIGHT | UP,
+	LEFT_UP = LEFT | UP,
 };
 
 class JUser : public JBaseCharacter
 {
 public:
+	bool  m_bIsRoll;
+	float m_fRollTime;
+public:
 	bool init() override;
 	bool frame() override;
 public:
-	void setCurSprite(float angle);
+	void setIdleSprite();
+	void setWalkSprite();
+	void setRollSprite();
 };
 

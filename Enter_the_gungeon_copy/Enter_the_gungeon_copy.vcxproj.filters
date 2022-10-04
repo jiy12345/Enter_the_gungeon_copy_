@@ -20,6 +20,9 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="bullet_kin.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnterTheGungeon.h" />
@@ -46,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="ObjectPool.h">
       <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="bullet_kin.h">
+      <Filter>Characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

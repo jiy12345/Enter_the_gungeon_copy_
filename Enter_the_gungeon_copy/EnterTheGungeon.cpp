@@ -34,8 +34,14 @@ bool EnterTheGungeon::init()
 	m_pUser->init();
 	m_pMapObject->init();
 
-	m_pGunShots.resize(32);
-	for (JSoundChannel*& curGunshot : m_pGunShots) {
+	m_vEnemy.resize(5);
+	for (auto& curEnemy : m_vEnemy) {
+		curEnemy = new bullet_kin();
+		curEnemy->init();
+	}
+
+	m_vGunShots.resize(32);
+	for (JSoundChannel*& curGunshot : m_vGunShots) {
 		curGunshot = new JSoundChannel(L"Gun1.wav");
 	}
 	m_pBGM = new JSoundChannel(L"MyLove.mp3");
@@ -47,7 +53,7 @@ bool EnterTheGungeon::frame()
 {
 	if (I_Input.GetKey(VK_HOME) == KEY_PUSH)
 	{
-		for (JSoundChannel*& curGunshot : m_pGunShots) {
+		for (JSoundChannel*& curGunshot : m_vGunShots) {
 			I_Sound.playEffect(curGunshot, false);
 		}
 	}
@@ -70,6 +76,10 @@ bool EnterTheGungeon::frame()
 	m_pUser->frame();
 	m_pMapObject->frame();
 
+	for (auto curEnemy : m_vEnemy) {
+		curEnemy->frame();
+	}
+
 	for (auto bullet : I_ObjectPool.PoolObjects) {
 		bullet->update();
 	}
@@ -82,6 +92,11 @@ bool EnterTheGungeon::render()
 {
 	m_pMapObject->render();
 	m_pUser->render();
+
+	for (auto curEnemy : m_vEnemy) {
+		curEnemy->render();
+	}
+
 	for (auto bullet : I_ObjectPool.PoolObjects) {
 		bullet->render_objectPool();
 	}
@@ -91,11 +106,15 @@ bool EnterTheGungeon::render()
 bool EnterTheGungeon::release()
 {
 	m_pUser->release();
+	for (auto curEnemy : m_vEnemy) {
+		curEnemy->release();
+	}
+
 	m_pMapObject->release();
 	I_Sound.stop(m_pBGM);
-	for (JSoundChannel*& curGunshot : m_pGunShots) {
+	for (JSoundChannel*& curGunshot : m_vGunShots) {
 		I_Sound.stop(curGunshot);
 	}
-	m_pGunShots.clear();
+	m_vEnemy.clear();
 	return true;
 }

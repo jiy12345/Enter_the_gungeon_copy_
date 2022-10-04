@@ -4,15 +4,21 @@
 bool JUser::init()
 {
     JBaseObject::init();
+
     m_rtArea.Set({ 0, 0 }, { 28, 40 });
     m_wstrTextureName = L"../data/sprites/pilot.png";
     I_Sprite.load(m_vSpriteInfo, L"../data/sprites/pilot.txt");
     m_fSpeed = 300.0f;
 
+    m_fHp = 5.0f;
+    m_fMaxHp = 5.0f;
+
     m_pGun = new gr_black_revolver;
     m_pGun->init();
+
     m_pGun->m_bIsUser = true;
-    return false;
+
+    return true;
 }
 
 bool JUser::frame()
@@ -151,25 +157,4 @@ void JUser::setRollSprite()
         m_curSprite = ROLLING_LEFT_UP;
         break;
     }
-}
-
-void JUser::gunFrame()
-{
-    m_pGun->m_rtArea.m_vLeftTop = m_rtArea.m_vLeftTop;
-    if (-90 < m_fAngle && m_fAngle <= 90) {
-        m_pGun->m_curSprite = GUN_RIGHT_IDLE;
-        m_pGun->m_rtArea.m_vLeftTop[0] += m_rtArea.m_vSize[0];
-
-        m_pGun->m_fRotateAngle = m_fAngle;
-    }
-    else {
-        m_pGun->m_curSprite = GUN_LEFT_IDLE;
-        m_pGun->m_rtArea.m_vLeftTop[0] -= m_rtArea.m_vSize[0];
-
-        m_pGun->m_fRotateAngle = m_fAngle - 180;
-    }
-    m_pGun->m_rtArea.m_vLeftTop[1] += m_rtArea.m_vSize[1] * (2 / 5.0f);
-
-
-    m_pGun->frame();
 }

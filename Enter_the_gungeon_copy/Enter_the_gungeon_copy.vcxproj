@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="bullet_kin.h" />
     <ClInclude Include="gr_black_revolver.h" />
     <ClInclude Include="IObejctPoolable.h" />
     <ClInclude Include="JBaseCharacter.h" />
@@ -161,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="bullet_kin.cpp" />
     <ClCompile Include="gr_black_revolver.cpp" />
     <ClCompile Include="JBaseCharacter.cpp" />
     <ClCompile Include="JEnemy.cpp" />

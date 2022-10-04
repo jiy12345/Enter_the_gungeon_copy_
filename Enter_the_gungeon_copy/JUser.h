@@ -23,18 +23,6 @@ enum SPRITE {
 	ROLLING_LEFT_UP,
 };
 
-enum MOVE_DIRECTION {
-	NO_DIRECTION = 0b0000,
-	UP = 0b0001,
-	DOWN = 0b0010,
-	LEFT = 0b0100,
-	RIGHT = 0b1000,
-	DOWN_RIGHT = DOWN | RIGHT,
-	DOWN_LEFT = DOWN | LEFT,
-	RIGHT_UP = RIGHT | UP,
-	LEFT_UP = LEFT | UP,
-};
-
 class JUser : public JBaseCharacter
 {
 public:
@@ -48,7 +36,5 @@ public:
 	void setIdleSprite();
 	void setWalkSprite();
 	void setRollSprite();
-public:
-	void gunFrame();
 };
 

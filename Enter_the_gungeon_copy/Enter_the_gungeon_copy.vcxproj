@@ -149,14 +149,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="gr_black_revolver.h" />
+    <ClInclude Include="IObejctPoolable.h" />
     <ClInclude Include="JBaseCharacter.h" />
     <ClInclude Include="JEnemy.h" />
     <ClInclude Include="JGun.h" />
     <ClInclude Include="JUser.h" />
     <ClInclude Include="EnterTheGungeon.h" />
+    <ClInclude Include="ObjectPool.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="gr_black_revolver.cpp" />
     <ClCompile Include="JBaseCharacter.cpp" />
     <ClCompile Include="JEnemy.cpp" />

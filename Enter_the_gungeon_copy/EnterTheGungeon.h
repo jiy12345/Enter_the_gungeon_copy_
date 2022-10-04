@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "JGameEngine.h"
+#include "ObjectPool.h"
 #include "JUser.h"
 
 class EnterTheGungeon : public JGameEngine

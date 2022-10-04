@@ -11,6 +11,7 @@ bool JUser::init()
 
     m_pGun = new gr_black_revolver;
     m_pGun->init();
+    m_pGun->m_bIsUser = true;
     return false;
 }
 
@@ -56,6 +57,12 @@ bool JUser::frame()
     if (I_Input.GetKey(VK_RBUTTON) == KEY_PUSH && m_vDirection.length() != 0) {
         m_bIsRoll = true;
         setRollSprite();
+    }
+
+    if (I_Input.GetKey(VK_LBUTTON) == KEY_PUSH) {
+        JVector<2> curDirection{ curPosInViewX, -curPosInViewY };
+        curDirection.normalize();
+        m_pGun->shot(curDirection);
     }
 
     gunFrame();
@@ -151,13 +158,18 @@ void JUser::gunFrame()
     m_pGun->m_rtArea.m_vLeftTop = m_rtArea.m_vLeftTop;
     if (-90 < m_fAngle && m_fAngle <= 90) {
         m_pGun->m_curSprite = GUN_RIGHT_IDLE;
-        m_pGun->m_rtArea.m_vLeftTop[0] += m_rtArea.m_vSize[0] * (3 / 4.0f);
+        m_pGun->m_rtArea.m_vLeftTop[0] += m_rtArea.m_vSize[0];
+
+        m_pGun->m_fRotateAngle = m_fAngle;
     }
     else {
         m_pGun->m_curSprite = GUN_LEFT_IDLE;
-        m_pGun->m_rtArea.m_vLeftTop[0] -= m_rtArea.m_vSize[0] * (3 / 4.0f);
+        m_pGun->m_rtArea.m_vLeftTop[0] -= m_rtArea.m_vSize[0];
+
+        m_pGun->m_fRotateAngle = m_fAngle - 180;
     }
     m_pGun->m_rtArea.m_vLeftTop[1] += m_rtArea.m_vSize[1] * (2 / 5.0f);
+
 
     m_pGun->frame();
 }

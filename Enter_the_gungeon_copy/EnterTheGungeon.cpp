@@ -69,6 +69,11 @@ bool EnterTheGungeon::frame()
 	}
 	m_pUser->frame();
 	m_pMapObject->frame();
+
+	for (auto bullet : I_ObjectPool.PoolObjects) {
+		bullet->update();
+	}
+
 	I_Camera.m_rtCamera.m_vLeftTop = m_pUser->m_rtArea.vCenter() - (JVector<2>{ I_Window.m_rtClient.right, I_Window.m_rtClient.bottom } / 2);
 	return true;
 }
@@ -77,6 +82,9 @@ bool EnterTheGungeon::render()
 {
 	m_pMapObject->render();
 	m_pUser->render();
+	for (auto bullet : I_ObjectPool.PoolObjects) {
+		bullet->render_objectPool();
+	}
 	return true;
 }
 

@@ -6,5 +6,9 @@ bool gr_black_revolver::init()
     m_rtArea.Set({ 0, 0 }, { 25, 20 });
     m_wstrTextureName = L"../data/sprites/gr_black_revolver.png";
     I_Sprite.load(m_vSpriteInfo, L"../data/sprites/gr_black_revolver.txt");
+
+    m_fSpeed = 100.0f;
+    m_fRange = 500.0f;
+
     return true;
 }

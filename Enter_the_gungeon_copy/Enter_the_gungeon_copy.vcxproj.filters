@@ -17,6 +17,9 @@
     <ClCompile Include="gr_black_revolver.cpp">
       <Filter>Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Weapons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnterTheGungeon.h" />
@@ -33,6 +36,15 @@
       <Filter>Characters</Filter>
     </ClInclude>
     <ClInclude Include="gr_black_revolver.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="IObejctPoolable.h">
+      <Filter>Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPool.h">
       <Filter>Weapons</Filter>
     </ClInclude>
   </ItemGroup>

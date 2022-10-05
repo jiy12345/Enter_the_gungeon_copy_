@@ -67,5 +67,8 @@
     <Filter Include="Characters">
       <UniqueIdentifier>{57ed8f03-b4dd-4c83-bdea-7afb2bb42654}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Space Partition">
+      <UniqueIdentifier>{68a7804d-5984-48e5-b5ca-4580d3a9a63e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

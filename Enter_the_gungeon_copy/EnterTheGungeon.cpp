@@ -3,13 +3,22 @@
 
 #define WINDOW_SIZE_X 1024
 #define WINDOW_SIZE_Y 768
+
+#define MAP_SIZE_X 2000
+#define MAP_SIZE_Y 2000
+
 #define WINDOW_NAME L"DirectXGameEngine"
+
+
 
 int APIENTRY wWinMain(
 	HINSTANCE	hInstance,
 	HINSTANCE	hPrevInstance,
 	LPWSTR		lpCmdLine,
 	int			nCmdShow) {
+
+	srand(time(NULL));
+
 #ifdef _DEBUG
 	AllocConsole();
 	AttachConsole(GetCurrentProcessId());
@@ -30,18 +39,21 @@ bool EnterTheGungeon::init()
 	m_pMapObject = new JBaseObject;
 	m_pMapObject->m_wstrTextureName = L"_RAINBOW.bmp";
 	m_pMapObject->m_rtUV.Set({ 0, 0 }, { 1, 1 });
-	m_pMapObject->m_rtArea.Set({ -1024, -768 }, { 1024 * 2, 768 * 2 });
+	m_pMapObject->m_rtArea.Set({ -(MAP_SIZE_X / 2), -(MAP_SIZE_Y / 2) }, { MAP_SIZE_X, MAP_SIZE_Y });
 	m_pUser->init();
 	m_pMapObject->init();
 
-	m_vEnemy.resize(5);
+	m_vEnemy.resize(10);
 	for (auto& curEnemy : m_vEnemy) {
 		curEnemy = new bullet_kin();
 		curEnemy->init();
+		curEnemy->m_rtArea.m_vLeftTop[0] = rand() % MAP_SIZE_X - MAP_SIZE_X / 2;
+		curEnemy->m_rtArea.m_vLeftTop[1] = rand() % MAP_SIZE_Y - MAP_SIZE_Y / 2;
 	}
 
 	m_vGunShots.resize(32);
 	for (JSoundChannel*& curGunshot : m_vGunShots) {
+		
 		curGunshot = new JSoundChannel(L"Gun1.wav");
 	}
 	m_pBGM = new JSoundChannel(L"MyLove.mp3");

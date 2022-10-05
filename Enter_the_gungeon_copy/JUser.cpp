@@ -105,7 +105,6 @@ void JUser::setIdleSprite() {
     else if (-120 < m_fAngle && m_fAngle <= -60) {
         m_curSprite = IDLE_DOWN;
     }
-    
 }
 
 void JUser::setWalkSprite()

@@ -2,7 +2,9 @@
 #include <windows.h>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
+#include <queue>
 #include <list>
 #include <set>
 #include <string>
@@ -14,7 +16,7 @@
 #include <math.h>
 
 #include "JDevice.h"
-#include "JShape.h"
+#include "JCollision.h"
 #include "JInput.h"
 #include "JTimer.h"
 

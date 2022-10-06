@@ -15,11 +15,6 @@ bool Bullet::init() {
 	return true;
 }
 
-bool Bullet::update()
-{
-	return frame();
-}
-
 bool Bullet::frame() {
 	m_rtArea.m_vLeftTop += m_vVelocity * I_Timer.m_fElapseTimer;
 
@@ -32,18 +27,9 @@ bool Bullet::frame() {
 	return true;
 }
 
-bool Bullet::render_objectPool()
-{
-	if (m_bIsUser) m_rtUV.Set({ 365 / 667.0f, 293 / 374.0f }, { 46 / 667.0f, 47 / 374.0f });
-	else		   m_rtUV.Set({ 18 / 667.0f, 294 / 374.0f }, { 46 / 667.0f, 46 / 374.0f });
-	if(CanRecylcable == false) render();
-	return true;
-}
-
-void Bullet::shoot(JVector<2> vLocation, JVector<2> vVelocity, float fRange, bool isUser)
+void Bullet::shoot(JVector<2> vLocation, JVector<2> vVelocity, float fRange)
 {
 	m_rtArea.m_vLeftTop = m_vFireLocation = vLocation;
 	m_vVelocity = vVelocity;
 	m_fRange = fRange;
-	m_bIsUser = isUser;
 }

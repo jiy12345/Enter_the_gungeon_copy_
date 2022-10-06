@@ -1,8 +1,13 @@
 #include "JEnemy.h"
+#include "SpacePartition.h"
 
 bool JEnemy::init()
 {
     JBaseObject::init();
+
+    m_bIsDynamic = true;
+
+    m_iCurNodeNumber = I_SP2D.FindNode(0, m_rtArea);
 
     m_pGun = new gr_black_revolver;
     m_pGun->init();

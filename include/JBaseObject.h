@@ -5,6 +5,7 @@
 #include "JTextureManager.h"
 #include "JSpriteManager.h"
 #include "JCamera.h"
+#include "IObejctPoolable.h"
 
 #define IS_NOT_SPRITE -1
 
@@ -15,8 +16,12 @@ struct SimpleVertex
 	JVector<2> t;
 };
 
-class JBaseObject
+class JBaseObject: public IObejctPoolable
 {
+public:
+	bool					m_bIsDynamic;
+	int						m_iCurNodeNumber;
+	int						m_iSerialNumber;
 public:
 	int 					m_curSprite = IS_NOT_SPRITE;
 	int						m_iIndexOfSprite = 0;

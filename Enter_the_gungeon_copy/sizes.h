@@ -1,0 +1,5 @@
+#define WINDOW_SIZE_X 1024
+#define WINDOW_SIZE_Y 768
+
+#define MAP_SIZE_X 2000
+#define MAP_SIZE_Y 2000

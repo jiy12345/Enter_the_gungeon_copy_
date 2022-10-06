@@ -2,7 +2,6 @@
 #include "stdafx.h"
 #include "JBaseObject.h"
 #include "Bullet.h"
-#include "ObjectPool.h"
 
 enum GUN_SPRITE {
 	GUN_RIGHT_IDLE,

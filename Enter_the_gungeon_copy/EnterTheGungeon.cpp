@@ -1,12 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "EnterTheGungeon.h"
 
-#define WINDOW_SIZE_X 1024
-#define WINDOW_SIZE_Y 768
-
-#define MAP_SIZE_X 2000
-#define MAP_SIZE_Y 2000
-
 #define WINDOW_NAME L"DirectXGameEngine"
 
 
@@ -35,6 +29,9 @@ int APIENTRY wWinMain(
 
 bool EnterTheGungeon::init()
 {
+	I_SP2D.Init();
+	I_SP2D.Buildtree(1, 0);
+
 	m_pUser = new JUser;
 	m_pMapObject = new JBaseObject;
 	m_pMapObject->m_wstrTextureName = L"_RAINBOW.bmp";
@@ -43,9 +40,8 @@ bool EnterTheGungeon::init()
 	m_pUser->init();
 	m_pMapObject->init();
 
-	m_vEnemy.resize(10);
-	for (auto& curEnemy : m_vEnemy) {
-		curEnemy = new bullet_kin();
+	for (int i = 0; i < 100;i++) {
+		auto curEnemy = I_ObjectManager.GetRecycledEnemy<bullet_kin>();
 		curEnemy->init();
 		curEnemy->m_rtArea.m_vLeftTop[0] = rand() % MAP_SIZE_X - MAP_SIZE_X / 2;
 		curEnemy->m_rtArea.m_vLeftTop[1] = rand() % MAP_SIZE_Y - MAP_SIZE_Y / 2;
@@ -88,12 +84,18 @@ bool EnterTheGungeon::frame()
 	m_pUser->frame();
 	m_pMapObject->frame();
 
-	for (auto curEnemy : m_vEnemy) {
-		curEnemy->frame();
+	for (int i = 0; i < I_ObjectManager.getNumOfEnemy(); i++) {
+		if (I_ObjectManager.getEnemy(i))
+			I_ObjectManager.getEnemy(i)->frame();
 	}
 
-	for (auto bullet : I_ObjectPool.PoolObjects) {
-		bullet->update();
+	for (int i = 0; i < I_ObjectManager.getNumOfUserBullet(); i++) {
+		if(I_ObjectManager.getUserBullet(i)) 
+			I_ObjectManager.getUserBullet(i)->frame();
+	}
+	for (int i = 0; i < I_ObjectManager.getNumOfEnemyBullet(); i++) {
+		if (I_ObjectManager.getEnemyBullet(i)) 
+			I_ObjectManager.getEnemyBullet(i)->frame();
 	}
 
 	I_Camera.m_rtCamera.m_vLeftTop = m_pUser->m_rtArea.vCenter() - (JVector<2>{ I_Window.m_rtClient.right, I_Window.m_rtClient.bottom } / 2);
@@ -105,12 +107,18 @@ bool EnterTheGungeon::render()
 	m_pMapObject->render();
 	m_pUser->render();
 
-	for (auto curEnemy : m_vEnemy) {
-		curEnemy->render();
+	for (int i = 0; i < I_ObjectManager.getNumOfEnemy(); i++) {
+		if (I_ObjectManager.getEnemy(i))
+			I_ObjectManager.getEnemy(i)->render();
 	}
 
-	for (auto bullet : I_ObjectPool.PoolObjects) {
-		bullet->render_objectPool();
+	for (int i = 0; i < I_ObjectManager.getNumOfUserBullet(); i++) {
+		if (I_ObjectManager.getUserBullet(i))
+			I_ObjectManager.getUserBullet(i)->render();
+	}
+	for (int i = 0; i < I_ObjectManager.getNumOfEnemyBullet(); i++) {
+		if (I_ObjectManager.getEnemyBullet(i))
+			I_ObjectManager.getEnemyBullet(i)->render();
 	}
 	return true;
 }
@@ -118,8 +126,9 @@ bool EnterTheGungeon::render()
 bool EnterTheGungeon::release()
 {
 	m_pUser->release();
-	for (auto curEnemy : m_vEnemy) {
-		curEnemy->release();
+	for (int i = 0; i < I_ObjectManager.getNumOfEnemy(); i++) {
+		if (I_ObjectManager.getEnemy(i))
+			I_ObjectManager.getEnemy(i)->render();
 	}
 
 	m_pMapObject->release();
@@ -127,6 +136,6 @@ bool EnterTheGungeon::release()
 	for (JSoundChannel*& curGunshot : m_vGunShots) {
 		I_Sound.stop(curGunshot);
 	}
-	m_vEnemy.clear();
+
 	return true;
 }

@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="IObejctPoolable.h" />
+    <ClInclude Include="JCollision.h" />
     <ClInclude Include="JBaseObject.h" />
     <ClInclude Include="JCamera.h" />
     <ClInclude Include="JDevice.h" />
@@ -166,6 +168,7 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="JCollision.cpp" />
     <ClCompile Include="JBaseObject.cpp" />
     <ClCompile Include="JCamera.cpp" />
     <ClCompile Include="JDevice.cpp" />

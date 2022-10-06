@@ -1,4 +1,5 @@
 #include "JGun.h"
+#include "ObjectManager.h"
 
 bool JGun::init()
 {
@@ -17,7 +18,7 @@ bool JGun::frame()
 void JGun::rotate(nCube<2> rtNDC)
 {
 	JVector<3> vCenter;
-	if(m_curSprite %2 == 0) vCenter[0] = rtNDC.vCenter()[0] - rtNDC.m_vSize[0] / 2;
+	if(m_curSprite % 2 == 0) vCenter[0] = rtNDC.vCenter()[0] - rtNDC.m_vSize[0] / 2;
 	else					vCenter[0] = rtNDC.vCenter()[0] + rtNDC.m_vSize[0] / 2;
 	vCenter[1] = rtNDC.vCenter()[1] - rtNDC.m_vSize[1] / 2;
 
@@ -34,13 +35,17 @@ void JGun::rotate(nCube<2> rtNDC)
 
 bool JGun::shot(JVector<2> curDirection)
 {
-	auto bullet = I_ObjectPool.GetRecycledObject<Bullet>();
+	Bullet* bullet;
+	if(m_bIsUser) bullet = I_ObjectManager.GetRecycledUserBullet();
+	else		  bullet = I_ObjectManager.GetRecycledEnemyBullet();
 	
 	JVector<2> shootLocation;
 	if (m_curSprite % 2 == 0) shootLocation = { m_rtArea.vMax()[0], m_rtArea.m_vLeftTop[1] };
 	else					  shootLocation = { m_rtArea.m_vLeftTop[0], m_rtArea.m_vLeftTop[1] };
 	
-	bullet->shoot(shootLocation, curDirection * m_fSpeed, m_fRange, m_bIsUser);
+	bullet->shoot(shootLocation, curDirection * m_fSpeed, m_fRange);
+	if (m_bIsUser) bullet->m_rtUV.Set({ 365 / 667.0f, 293 / 374.0f }, { 46 / 667.0f, 47 / 374.0f });
+	else		   bullet->m_rtUV.Set({ 18 / 667.0f, 294 / 374.0f }, { 46 / 667.0f, 46 / 374.0f });
 
 	return true;
 }

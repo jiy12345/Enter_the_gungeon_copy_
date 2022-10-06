@@ -152,13 +152,14 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="bullet_kin.h" />
     <ClInclude Include="gr_black_revolver.h" />
-    <ClInclude Include="IObejctPoolable.h" />
     <ClInclude Include="JBaseCharacter.h" />
     <ClInclude Include="JEnemy.h" />
     <ClInclude Include="JGun.h" />
     <ClInclude Include="JUser.h" />
     <ClInclude Include="EnterTheGungeon.h" />
-    <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="sizes.h" />
+    <ClInclude Include="SpacePartition.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
@@ -169,6 +170,8 @@
     <ClCompile Include="JGun.cpp" />
     <ClCompile Include="JUser.cpp" />
     <ClCompile Include="EnterTheGungeon.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="SpacePartition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DirectXGameEngine\DirectXGameEngine.vcxproj">

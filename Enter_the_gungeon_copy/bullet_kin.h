@@ -5,6 +5,7 @@
 
 class bullet_kin : public JEnemy
 {
+public:
 	bool init();
 };
 

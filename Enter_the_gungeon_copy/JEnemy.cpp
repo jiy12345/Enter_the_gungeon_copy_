@@ -17,20 +17,6 @@ bool JEnemy::frame()
 {
     float curUserPosInViewX = I_Camera.m_rtCamera.vCenter()[0] + I_Window.m_rtClient.right / 2;
     float curUserPosInViewY = I_Camera.m_rtCamera.vCenter()[1] + I_Window.m_rtClient.bottom / 2;
-    m_vDirection[0] = -(m_rtArea.vCenter()[0] - curUserPosInViewX);
-    m_vDirection[1] = -(m_rtArea.vCenter()[1] - curUserPosInViewY);
-    m_fAngle = static_cast<float>(atan2(-m_vDirection[1], m_vDirection[0]) * 180 / PI);
-
-    JVector<2> vMoveDirection;
-    if (-500.0f <= m_vDirection.length() && m_vDirection.length() <= 500.0f) {
-        vMoveDirection[0] = rand() % 100 - 100;
-        vMoveDirection[1] = rand() % 100 - 100;
-    }
-    else {
-        vMoveDirection = m_vDirection;
-    }
-    vMoveDirection.normalize();
-    m_vDirection.normalize();
 
     if (m_bIsMoving) {
         if (m_fCurLeftTime <= 0) {
@@ -42,14 +28,22 @@ bool JEnemy::frame()
         }
         setIdleSprite();
         setWalkSprite();
-        m_rtArea.m_vLeftTop += vMoveDirection * I_Timer.m_fElapseTimer * m_fSpeed;
+        m_vDirection.normalize();
+        m_rtArea.m_vLeftTop += m_vDirection * I_Timer.m_fElapseTimer * m_fSpeed;
     }
     else {
         m_fAttackTime -= I_Timer.m_fElapseTimer;
 
         if (m_fAttackTime <= 0) {
             if (m_iCurLeftShots <= 0) {
-                m_fCurLeftTime = rand() % 7;
+                m_vDirection[0] = -(m_rtArea.vCenter()[0] - curUserPosInViewX);
+                m_vDirection[1] = -(m_rtArea.vCenter()[1] - curUserPosInViewY);
+                if (-300.0f <= m_vDirection.length() && m_vDirection.length() <= 300.0f) {
+                    m_vDirection[0] = rand() % 200 - 100;
+                    m_vDirection[1] = rand() % 200 - 100;
+                }
+                m_vDirection.normalize();
+                m_fCurLeftTime = rand() % 3;
                 m_bIsMoving = true;
             }
             else {
@@ -62,6 +56,7 @@ bool JEnemy::frame()
         }
     }
 
+    m_fAngle = static_cast<float>(atan2(m_rtArea.vCenter()[1] - curUserPosInViewY, -(m_rtArea.vCenter()[0] - curUserPosInViewX)) * 180 / PI);
     gunFrame();
 
     m_fStep = m_vSpriteInfo->at(m_curSprite).m_fTotalTime / m_vSpriteInfo->at(m_curSprite).m_iNumFrame;

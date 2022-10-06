@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bullet">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEQEAAAAgAAAAAAAAAAAAAAAIAAAAAAQAQAAA=</HashCode>
+      <FileName>Bullet.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="gr_black_revolver">
+    <Position X="5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>gr_black_revolver.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JGun">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAgAAAAQAABAAAAAAAICiAAAAQAAAAA=</HashCode>
+      <FileName>JGun.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="bullet_kin">
+    <Position X="0.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>bullet_kin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JBaseCharacter">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAQAAAQAAAEAAAAIAAAAIAIAAAAQAQAAA=</HashCode>
+      <FileName>JBaseCharacter.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_pGun" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="JEnemy">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAIAQAAIIAAAAIQAgAAA=</HashCode>
+      <FileName>JEnemy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JUser">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAIAAAAAAAAAIAAAAIAQAAIAAIAAAQAQAAA=</HashCode>
+      <FileName>JUser.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectManager">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UACAEAAAAAAIAAIgECAAQAACAUAAAAQQIRAgCAAAAAA=</HashCode>
+      <FileName>ObjectManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnterTheGungeon">
+    <Position X="7.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAACAAAAAAAAAAAAAAAAACAoAAAAIAAAAAARAQAAA=</HashCode>
+      <FileName>EnterTheGungeon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

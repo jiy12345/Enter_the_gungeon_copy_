@@ -1,5 +1,6 @@
 #include "JGun.h"
 #include "ObjectManager.h"
+#include "JSoundManager.h"
 
 bool JGun::init()
 {

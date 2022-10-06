@@ -48,37 +48,23 @@ bool EnterTheGungeon::init()
 		
 		curGunshot = new JSoundChannel(L"Gun1.wav");
 	}
-	m_pBGM = new JSoundChannel(L"MyLove.mp3");
+	m_pBGM = new JSoundChannel(L"TowerDefenseMusic01_Loop_Stereo.WAV");
 
 	m_vHeart.resize(m_pUser->m_fMaxHp);
+
+	I_Sound.play(m_pBGM, true);
 
 	return true;
 }
 
 bool EnterTheGungeon::frame()
 {
-	if (I_Input.GetKey(VK_HOME) == KEY_PUSH)
+	if (I_Input.GetKey(VK_LBUTTON) == KEY_PUSH)
 	{
-		for (JSoundChannel*& curGunshot : m_vGunShots) {
-			I_Sound.playEffect(curGunshot, false);
-		}
+
+		I_Sound.playEffect(m_vGunShots[0]);
 	}
-	if (I_Input.GetKey(VK_INSERT) == KEY_PUSH)
-	{
-		I_Sound.play(m_pBGM, true);
-	}
-	if (I_Input.GetKey(VK_END) == KEY_PUSH)
-	{
-		I_Sound.stop(m_pBGM);
-	}
-	if (I_Input.GetKey(VK_F1) == KEY_PUSH)
-	{
-		I_Sound.pause(m_pBGM);
-	}
-	if (I_Input.GetKey(VK_F2) == KEY_PUSH)
-	{
-		I_Sound.resume(m_pBGM);
-	}
+
 	m_pUser->frame();
 
 	for (int i = MIN_ENEMY_SERIAL_NUM; i < MIN_ENEMY_SERIAL_NUM + I_ObjectManager.getNumOfEnemy(); i++) {

@@ -165,6 +165,8 @@
     <ClInclude Include="JWindow.h" />
     <ClInclude Include="JWriter.h" />
     <ClInclude Include="JShape.h" />
+    <ClInclude Include="sizes.h" />
+    <ClInclude Include="SpacePartition.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +185,7 @@
     <ClCompile Include="JWindow.cpp" />
     <ClCompile Include="JWriter.cpp" />
     <ClCompile Include="JShape.cpp" />
+    <ClCompile Include="SpacePartition.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>

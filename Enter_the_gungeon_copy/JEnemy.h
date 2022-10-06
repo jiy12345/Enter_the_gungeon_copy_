@@ -23,5 +23,7 @@ public:
 	bool frame() override;
 	void setIdleSprite();
 	void setWalkSprite();
+public:
+	virtual bool checkCollision() override;
 };
 

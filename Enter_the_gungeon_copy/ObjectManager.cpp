@@ -8,7 +8,7 @@ Bullet* ObjectManager::GetRecycledEnemyBullet()
     {
         poolObj = new Bullet();
         poolObj->init();
-        poolObj->m_iSerialNumber = enemyBulletList.size();
+        poolObj->m_iSerialNumber = MIN_ENEMY_BULLET_SERIAL_NUM + enemyBulletList.size();
         enemyBulletList.push_back(poolObj);
         return poolObj;
     }
@@ -26,7 +26,7 @@ Bullet* ObjectManager::GetRecycledEnemyBullet()
     {
         poolObj = new Bullet();
         poolObj->init();
-        poolObj->m_iSerialNumber = enemyBulletList.size();
+        poolObj->m_iSerialNumber = MIN_ENEMY_BULLET_SERIAL_NUM + enemyBulletList.size();
         enemyBulletList.push_back(poolObj);
         return poolObj;
     }
@@ -43,7 +43,7 @@ Bullet* ObjectManager::GetRecycledUserBullet()
     if (userBulletList.size() == 0)
     {
         poolObj = new Bullet();
-        poolObj->m_iSerialNumber = userBulletList.size();
+        poolObj->m_iSerialNumber = MIN_USER_BULLET_SERIAL_NUM + userBulletList.size();
         userBulletList.push_back(poolObj);
         return poolObj;
     }
@@ -61,7 +61,7 @@ Bullet* ObjectManager::GetRecycledUserBullet()
     {
         poolObj = new Bullet();
         poolObj->init();
-        poolObj->m_iSerialNumber = userBulletList.size();
+        poolObj->m_iSerialNumber = MIN_USER_BULLET_SERIAL_NUM + userBulletList.size();
         userBulletList.push_back(poolObj);
         return poolObj;
     }
@@ -70,8 +70,15 @@ Bullet* ObjectManager::GetRecycledUserBullet()
 
     return poolObj;
 }
+JBaseObject* ObjectManager::getObject(int iSerialNum)
+{
+    if (isEnemy(iSerialNum)) return getEnemy(iSerialNum);
+    if (isEnemyBullet(iSerialNum)) return getEnemyBullet(iSerialNum);
+    if (isUserBullet(iSerialNum)) return getUserBullet(iSerialNum);
+}
 JEnemy* ObjectManager::getEnemy(int iEnemySerialNum)
 {
+    iEnemySerialNum -= MIN_ENEMY_SERIAL_NUM;
     if (iEnemySerialNum >= getNumOfEnemy() || 
         enemyList[iEnemySerialNum]->CanRecylcable == true) 
         return nullptr;
@@ -80,6 +87,7 @@ JEnemy* ObjectManager::getEnemy(int iEnemySerialNum)
 
 Bullet* ObjectManager::getEnemyBullet(int iEnemyBulletSerialNum)
 {
+    iEnemyBulletSerialNum -= MIN_ENEMY_BULLET_SERIAL_NUM;
     if (iEnemyBulletSerialNum >= getNumOfEnemyBullet() ||
         enemyBulletList[iEnemyBulletSerialNum]->CanRecylcable == true)
         return nullptr;
@@ -88,6 +96,7 @@ Bullet* ObjectManager::getEnemyBullet(int iEnemyBulletSerialNum)
 
 Bullet* ObjectManager::getUserBullet(int iUserBulletSerialNum)
 {
+    iUserBulletSerialNum -= MIN_USER_BULLET_SERIAL_NUM;
     if (iUserBulletSerialNum >= getNumOfUserBullet() ||
         userBulletList[iUserBulletSerialNum]->CanRecylcable == true)
         return nullptr;
@@ -110,4 +119,19 @@ bool ObjectManager::release()
     enemyList.clear();
 
     return true;
+}
+
+bool ObjectManager::isEnemy(int iEnemySerialNum)
+{
+    return MIN_ENEMY_SERIAL_NUM <= iEnemySerialNum && iEnemySerialNum <= MAX_ENEMY_SERIAL_NUM;
+}
+
+bool ObjectManager::isEnemyBullet(int iEnemyBulletSerialNum)
+{
+    return MIN_ENEMY_BULLET_SERIAL_NUM <= iEnemyBulletSerialNum && iEnemyBulletSerialNum <= MAX_ENEMY_BULLET_SERIAL_NUM;
+}
+
+bool ObjectManager::isUserBullet(int iUserBulletSerialNum)
+{
+    return MIN_USER_BULLET_SERIAL_NUM <= iUserBulletSerialNum && iUserBulletSerialNum <= MAX_USER_BULLET_SERIAL_NUM;
 }

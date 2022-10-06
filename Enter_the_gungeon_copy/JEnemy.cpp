@@ -1,13 +1,10 @@
 #include "JEnemy.h"
 #include "SpacePartition.h"
+#include "ObjectManager.h"
 
 bool JEnemy::init()
 {
     JBaseObject::init();
-
-    m_bIsDynamic = true;
-
-    m_iCurNodeNumber = I_SP2D.FindNode(0, m_rtArea);
 
     m_pGun = new gr_black_revolver;
     m_pGun->init();
@@ -68,6 +65,9 @@ bool JEnemy::frame()
     gunFrame();
 
     m_fStep = m_vSpriteInfo->at(m_curSprite).m_fTotalTime / m_vSpriteInfo->at(m_curSprite).m_iNumFrame;
+
+    JBaseObject::frame();
+
     return true;
 }
 
@@ -105,4 +105,29 @@ void JEnemy::setWalkSprite()
     //    m_curSprite = WALKING_LEFT_UP;
     //    break;
     //}
+}
+
+bool JEnemy::checkCollision()
+{
+    std::vector<int> nodeToSearch = I_SP2D.FindCollisionSearchNode(0, m_rtArea);
+
+    for (int curNode : nodeToSearch) {
+        for (int curObjectNumber : I_SP2D.nodeList[curNode].m_dynamicObjectList) {
+            if (I_ObjectManager.isUserBullet(curObjectNumber)) {
+                JBaseObject* curObject = I_ObjectManager.getObject(curObjectNumber);
+
+                if (curObject == nullptr) continue;
+
+                if (JCollision<2>::CubeToCube(m_rtArea, curObject->m_rtArea) != CollisionType::C_OUT) {
+                    curObject->setRecycle();
+                    m_fHp -= 1.0;
+                }
+                curObject = nullptr;
+            }
+        }
+    }
+
+    if (m_fHp <= 0) this->setRecycle();
+
+    return true;
 }

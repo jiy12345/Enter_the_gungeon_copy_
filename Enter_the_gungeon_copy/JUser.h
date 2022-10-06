@@ -36,5 +36,7 @@ public:
 	void setIdleSprite();
 	void setWalkSprite();
 	void setRollSprite();
+public:
+	virtual bool checkCollision() override;
 };
 

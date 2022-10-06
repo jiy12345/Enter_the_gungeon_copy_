@@ -26,8 +26,11 @@ public:
 	float	m_fMaxHp;
 	JGun*	m_pGun;
 public:
+	bool	init() override;
 	bool	frame() override;
 	bool	render() override;
 	void	gunFrame();
+public:
+	virtual bool	checkCollision() = 0;
 };
 

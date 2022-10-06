@@ -1,10 +1,14 @@
 #include "stdafx.h"
 #include "Bullet.h"
+#include "SpacePartition.h"
 
 Bullet::Bullet()
 {
 	JBaseObject::init();
 	init();
+
+	m_bIsDynamic = true;
+	m_iCurNodeNumber = I_SP2D.FindNode(0, m_rtArea);
 }
 
 bool Bullet::init() {
@@ -22,7 +26,7 @@ bool Bullet::frame() {
 	if (vDistance.length() > m_fRange)
 		setRecycle();
 
-	JBaseObject::render();
+	JBaseObject::frame();
 
 	return true;
 }

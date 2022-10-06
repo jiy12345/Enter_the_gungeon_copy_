@@ -1,4 +1,13 @@
 #include "JBaseCharacter.h"
+#include "SpacePartition.h"
+
+
+bool JBaseCharacter::init()
+{
+    m_bIsDynamic = true;
+    m_iCurNodeNumber = I_SP2D.FindNode(0, m_rtArea);
+    return true;
+}
 
 bool JBaseCharacter::frame()
 {

@@ -1,6 +1,5 @@
 #pragma once
 #include "stdafx.h"
-#include "ObjectManager.h"
 #include "sizes.h"
 
 enum class SP_TYPE
@@ -152,8 +151,8 @@ inline void SpacePartition<n>::Init()
 	JVector<n> size;
 
 	for (int i = 0; i < n; i++) {
-		pos[i] = 0;
-		size[i] = MAP_SIZE_X;
+		pos[i] = -MAP_SIZE_X;
+		size[i] = MAP_SIZE_X * 2;
 	}
 
 	nodeList[0].m_area.Set(pos, size);

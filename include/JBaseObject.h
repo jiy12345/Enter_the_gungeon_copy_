@@ -19,7 +19,7 @@ struct SimpleVertex
 class JBaseObject: public IObejctPoolable
 {
 public:
-	bool					m_bIsDynamic;
+	bool					m_bIsDynamic = false;
 	int						m_iCurNodeNumber;
 	int						m_iSerialNumber;
 public:

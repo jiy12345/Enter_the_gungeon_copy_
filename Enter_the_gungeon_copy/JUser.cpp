@@ -1,5 +1,7 @@
 #include "JUser.h"
 #include "gr_black_revolver.h"
+#include "SpacePartition.h"
+#include "ObjectManager.h"
 
 bool JUser::init()
 {
@@ -10,8 +12,8 @@ bool JUser::init()
     I_Sprite.load(m_vSpriteInfo, L"../data/sprites/pilot.txt");
     m_fSpeed = 300.0f;
 
-    m_fHp = 5.0f;
-    m_fMaxHp = 5.0f;
+    m_fHp = 10.0f;
+    m_fMaxHp = 10.0f;
 
     m_pGun = new gr_black_revolver;
     m_pGun->init();
@@ -29,6 +31,8 @@ bool JUser::frame()
         }
 
         m_rtArea.m_vLeftTop += m_vDirection * I_Timer.m_fElapseTimer * m_fSpeed;
+        JBaseObject::frame();
+
         return true;
     }
     float curPosInViewY = -(I_Input.m_ptPos.y - I_Window.m_rtClient.bottom / 2);
@@ -76,6 +80,9 @@ bool JUser::frame()
     if (m_vDirection.length() != 0) m_vDirection.normalize();
     m_rtArea.m_vLeftTop += m_vDirection * I_Timer.m_fElapseTimer * m_fSpeed;
     m_fStep = m_vSpriteInfo->at(m_curSprite).m_fTotalTime / m_vSpriteInfo->at(m_curSprite).m_iNumFrame;
+    
+    JBaseObject::frame();
+
     return true;
 }
 
@@ -156,4 +163,29 @@ void JUser::setRollSprite()
         m_curSprite = ROLLING_LEFT_UP;
         break;
     }
+}
+
+bool JUser::checkCollision()
+{
+    if (m_bIsRoll == true) return true;
+
+    std::vector<int> nodeToSearch = I_SP2D.FindCollisionSearchNode(0, m_rtArea);
+
+    for (int curNode : nodeToSearch) {
+        for (int curObjectNumber : I_SP2D.nodeList[curNode].m_dynamicObjectList) {
+            if (I_ObjectManager.isUserBullet(curObjectNumber)) continue;
+
+            JBaseObject* curObject = I_ObjectManager.getObject(curObjectNumber);
+
+            if (curObject == nullptr) continue;
+
+            if (JCollision<2>::CubeToCube(m_rtArea, curObject->m_rtArea) != CollisionType::C_OUT) {
+                if(I_ObjectManager.isEnemyBullet(curObjectNumber)) curObject->setRecycle();
+                m_fHp -= 1.0;
+            }
+            curObject = nullptr;
+        }
+    }
+
+    return true;
 }

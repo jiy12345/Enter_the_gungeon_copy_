@@ -33,14 +33,10 @@ bool EnterTheGungeon::init()
 	I_SP2D.Buildtree(1, 0);
 
 	m_pUser = new JUser;
-	m_pMapObject = new JBaseObject;
-	m_pMapObject->m_wstrTextureName = L"_RAINBOW.bmp";
-	m_pMapObject->m_rtUV.Set({ 0, 0 }, { 1, 1 });
-	m_pMapObject->m_rtArea.Set({ -(MAP_SIZE_X / 2), -(MAP_SIZE_Y / 2) }, { MAP_SIZE_X, MAP_SIZE_Y });
 	m_pUser->init();
-	m_pMapObject->init();
+	m_pMapObject = new Tile();
 
-	for (int i = 0; i < 100;i++) {
+	for (int i = MIN_ENEMY_SERIAL_NUM; i < MIN_ENEMY_SERIAL_NUM + 100;i++) {
 		auto curEnemy = I_ObjectManager.GetRecycledEnemy<bullet_kin>();
 		curEnemy->init();
 		curEnemy->m_rtArea.m_vLeftTop[0] = rand() % MAP_SIZE_X - MAP_SIZE_X / 2;
@@ -53,6 +49,8 @@ bool EnterTheGungeon::init()
 		curGunshot = new JSoundChannel(L"Gun1.wav");
 	}
 	m_pBGM = new JSoundChannel(L"MyLove.mp3");
+
+	m_vHeart.resize(m_pUser->m_fMaxHp);
 
 	return true;
 }
@@ -82,21 +80,23 @@ bool EnterTheGungeon::frame()
 		I_Sound.resume(m_pBGM);
 	}
 	m_pUser->frame();
-	m_pMapObject->frame();
 
-	for (int i = 0; i < I_ObjectManager.getNumOfEnemy(); i++) {
+	for (int i = MIN_ENEMY_SERIAL_NUM; i < MIN_ENEMY_SERIAL_NUM + I_ObjectManager.getNumOfEnemy(); i++) {
 		if (I_ObjectManager.getEnemy(i))
 			I_ObjectManager.getEnemy(i)->frame();
 	}
 
-	for (int i = 0; i < I_ObjectManager.getNumOfUserBullet(); i++) {
+	for (int i = MIN_USER_BULLET_SERIAL_NUM; i < MIN_USER_BULLET_SERIAL_NUM + I_ObjectManager.getNumOfUserBullet(); i++) {
 		if(I_ObjectManager.getUserBullet(i)) 
 			I_ObjectManager.getUserBullet(i)->frame();
 	}
-	for (int i = 0; i < I_ObjectManager.getNumOfEnemyBullet(); i++) {
+
+	for (int i = MIN_ENEMY_BULLET_SERIAL_NUM; i < MIN_ENEMY_BULLET_SERIAL_NUM + I_ObjectManager.getNumOfEnemyBullet(); i++) {
 		if (I_ObjectManager.getEnemyBullet(i)) 
 			I_ObjectManager.getEnemyBullet(i)->frame();
 	}
+
+	checkCollision();
 
 	I_Camera.m_rtCamera.m_vLeftTop = m_pUser->m_rtArea.vCenter() - (JVector<2>{ I_Window.m_rtClient.right, I_Window.m_rtClient.bottom } / 2);
 	return true;
@@ -104,37 +104,72 @@ bool EnterTheGungeon::frame()
 
 bool EnterTheGungeon::render()
 {
-	m_pMapObject->render();
+	JVector<2> vMapStartLoc{ -2500, -2500 };
+
+	for (int i = 0; i < 25;i++) {
+		for (int j = 0; j < 25; j++) {
+			m_pMapObject->m_rtArea.m_vLeftTop[0] = vMapStartLoc[0] + i * m_pMapObject->m_rtArea.m_vSize[0];
+			m_pMapObject->m_rtArea.m_vLeftTop[1] = vMapStartLoc[1] + j * m_pMapObject->m_rtArea.m_vSize[1];
+			m_pMapObject->render();
+		}
+	}
+
 	m_pUser->render();
 
-	for (int i = 0; i < I_ObjectManager.getNumOfEnemy(); i++) {
+	for (int i = MIN_ENEMY_SERIAL_NUM; i < MIN_ENEMY_SERIAL_NUM + I_ObjectManager.getNumOfEnemy(); i++) {
 		if (I_ObjectManager.getEnemy(i))
 			I_ObjectManager.getEnemy(i)->render();
 	}
 
-	for (int i = 0; i < I_ObjectManager.getNumOfUserBullet(); i++) {
+	for (int i = MIN_USER_BULLET_SERIAL_NUM; i < MIN_USER_BULLET_SERIAL_NUM + I_ObjectManager.getNumOfUserBullet(); i++) {
 		if (I_ObjectManager.getUserBullet(i))
 			I_ObjectManager.getUserBullet(i)->render();
 	}
-	for (int i = 0; i < I_ObjectManager.getNumOfEnemyBullet(); i++) {
+	for (int i = MIN_ENEMY_BULLET_SERIAL_NUM; i < MIN_ENEMY_BULLET_SERIAL_NUM + I_ObjectManager.getNumOfEnemyBullet(); i++) {
 		if (I_ObjectManager.getEnemyBullet(i))
 			I_ObjectManager.getEnemyBullet(i)->render();
 	}
+
+	JVector<2> vHPLocation = I_Camera.m_rtCamera.m_vLeftTop;
+	vHPLocation[0] += 10;
+	vHPLocation[1] += 10;
+	
+	for (int i = 0; i < m_pUser->m_fMaxHp; i++) {
+		if (i < m_pUser->m_fHp) m_vHeart[i].setHeart(FULL);
+		else					m_vHeart[i].setHeart(EMPTY);
+		m_vHeart[i].m_rtArea.m_vLeftTop = vHPLocation;
+		m_vHeart[i].m_rtArea.m_vLeftTop[0] += i * (m_vHeart[i].m_rtArea.m_vSize[0] + 10);
+		m_vHeart[i].render();
+	}
+
 	return true;
 }
 
 bool EnterTheGungeon::release()
 {
 	m_pUser->release();
-	for (int i = 0; i < I_ObjectManager.getNumOfEnemy(); i++) {
+	for (int i = MIN_ENEMY_SERIAL_NUM; i < MIN_ENEMY_SERIAL_NUM + I_ObjectManager.getNumOfEnemy(); i++) {
 		if (I_ObjectManager.getEnemy(i))
 			I_ObjectManager.getEnemy(i)->render();
 	}
 
 	m_pMapObject->release();
+
 	I_Sound.stop(m_pBGM);
 	for (JSoundChannel*& curGunshot : m_vGunShots) {
 		I_Sound.stop(curGunshot);
+	}
+
+	return true;
+}
+
+bool EnterTheGungeon::checkCollision()
+{
+	m_pUser->checkCollision();
+
+	for (int i = MIN_ENEMY_SERIAL_NUM; i < MIN_ENEMY_SERIAL_NUM + I_ObjectManager.getNumOfEnemy(); i++) {
+		if (I_ObjectManager.getEnemy(i))
+			I_ObjectManager.getEnemy(i)->checkCollision();
 	}
 
 	return true;

@@ -22,14 +22,17 @@
     <ClCompile Include="bullet_kin.cpp">
       <Filter>Characters</Filter>
     </ClCompile>
-    <ClCompile Include="SpacePartition.cpp">
-      <Filter>Space Partition</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Object Manager</Filter>
     </ClCompile>
     <ClCompile Include="EnterTheGungeon.cpp">
       <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="Heart.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,16 +57,18 @@
     <ClInclude Include="bullet_kin.h">
       <Filter>Characters</Filter>
     </ClInclude>
-    <ClInclude Include="SpacePartition.h">
-      <Filter>Space Partition</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>Object Manager</Filter>
     </ClInclude>
     <ClInclude Include="EnterTheGungeon.h">
       <Filter>main</Filter>
     </ClInclude>
-    <ClInclude Include="sizes.h" />
+    <ClInclude Include="Heart.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="_RAINBOW.bmp" />
@@ -78,14 +83,17 @@
     <Filter Include="Characters">
       <UniqueIdentifier>{57ed8f03-b4dd-4c83-bdea-7afb2bb42654}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Space Partition">
-      <UniqueIdentifier>{68a7804d-5984-48e5-b5ca-4580d3a9a63e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object Manager">
       <UniqueIdentifier>{1d1a8e54-e45d-4d05-b748-d264e639ba7d}</UniqueIdentifier>
     </Filter>
     <Filter Include="main">
       <UniqueIdentifier>{344d8bec-03f5-4363-8006-5a0f17008d33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{91ab5a2c-b624-43d5-8d85-38a78e751025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{36ab67b6-1fb7-4d3b-9f2d-46baf3baa680}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

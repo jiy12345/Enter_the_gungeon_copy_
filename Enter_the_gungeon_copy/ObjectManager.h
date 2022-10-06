@@ -4,6 +4,13 @@
 #include "JUser.h"
 #include "Bullet.h"
 
+#define MIN_ENEMY_SERIAL_NUM 0
+#define MAX_ENEMY_SERIAL_NUM MIN_ENEMY_BULLET_SERIAL_NUM - 1
+#define MIN_ENEMY_BULLET_SERIAL_NUM 1000
+#define MAX_ENEMY_BULLET_SERIAL_NUM MIN_USER_BULLET_SERIAL_NUM - 1
+#define MIN_USER_BULLET_SERIAL_NUM 10000
+#define MAX_USER_BULLET_SERIAL_NUM 20000
+
 class ObjectManager final : public JSingleton<ObjectManager>
 {
     friend class JSingleton<ObjectManager>;
@@ -20,7 +27,7 @@ public:
         {
             poolObj = dynamic_cast<JEnemy*>(new T());
             poolObj->init();
-            poolObj->m_iSerialNumber = enemyList.size();
+            poolObj->m_iSerialNumber = MIN_ENEMY_SERIAL_NUM + enemyList.size();
             enemyList.push_back(poolObj);
             return poolObj;
         }
@@ -38,7 +45,7 @@ public:
         {
             poolObj = dynamic_cast<JEnemy*>(new T());
             poolObj->init();
-            poolObj->m_iSerialNumber = enemyList.size();
+            poolObj->m_iSerialNumber = MIN_ENEMY_SERIAL_NUM + enemyList.size();
             enemyList.push_back(poolObj);
             return poolObj;
         }
@@ -50,10 +57,11 @@ public:
 
     Bullet* GetRecycledEnemyBullet();
     Bullet* GetRecycledUserBullet();
+    JBaseObject* getObject(int iSerialNum);
     JEnemy* getEnemy(int iEnemySerialNum);
     Bullet* getEnemyBullet(int iEnemyBulletSerialNum);
     Bullet* getUserBullet(int iUserBulletSerialNum);
-
+public:
     bool release();
     int getNumOfEnemy() {
         return enemyList.size();
@@ -64,6 +72,10 @@ public:
     int getNumOfUserBullet() {
         return userBulletList.size();
     }
+public:
+    bool isEnemy(int iEnemySerialNum);
+    bool isEnemyBullet(int iEnemyBulletSerialNum);
+    bool isUserBullet(int iUserBulletSerialNum);
 private:
     ObjectManager() {};
     ~ObjectManager() = default;

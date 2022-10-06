@@ -71,6 +71,12 @@
     <ClInclude Include="IObejctPoolable.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="SpacePartition.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="sizes.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -119,6 +125,9 @@
       <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="JCollision.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SpacePartition.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

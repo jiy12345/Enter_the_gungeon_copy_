@@ -1,4 +1,5 @@
 #include "JBaseObject.h"
+#include "SpacePartition.h"
 
 void JBaseObject::getNDC(nCube<2>& rtArea)
 {
@@ -196,6 +197,14 @@ bool JBaseObject::init()
 
 bool JBaseObject::frame()
 {
+	if (m_bIsDynamic == false) return true;
+		
+	nCube<2> curObjectArea = m_rtArea;
+	nCube<2> areaObjectBelonged = I_SP2D.nodeList[m_iCurNodeNumber].m_area;
+	
+	I_SP2D.nodeList[m_iCurNodeNumber].m_dynamicObjectList.erase(m_iCurNodeNumber);
+	m_iCurNodeNumber = I_SP2D.FindNode(0, curObjectArea);
+	I_SP2D.nodeList[m_iCurNodeNumber].m_dynamicObjectList.insert(m_iSerialNumber);
 	return true;
 }
 

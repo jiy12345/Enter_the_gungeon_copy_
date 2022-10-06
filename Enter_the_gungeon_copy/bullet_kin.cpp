@@ -7,8 +7,8 @@ bool bullet_kin::init() {
 	I_Sprite.load(m_vSpriteInfo, L"../data/sprites/bullet kin.txt");
 	m_fSpeed = 100.0f;
 
-	m_fHp = 5.0f;
-	m_fMaxHp = 5.0f;
+	m_fHp = 3.0f;
+	m_fMaxHp = 3.0f;
 
 	m_pGun = new gr_black_revolver;
 	m_pGun->init();

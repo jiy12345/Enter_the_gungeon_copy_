@@ -25,21 +25,21 @@ CollisionType JCollision<n>::CubeToCube(nCube<n>& a, nCube<n>& b)
     JVector<n> a_vMax = a.vMax();
     JVector<n> b_vMax = b.vMax();
     for (int i = 0; i < n; i++) {
-        fMin = a.m_vMin[i] < b.m_vMin[i] ? a.m_vMin[i] : b.m_vMin[i];
+        fMin = a.m_vLeftTop[i] < b.m_vLeftTop[i] ? a.m_vLeftTop[i] : b.m_vLeftTop[i];
         fMax = a_vMax[i] > b_vMax[i] ? a_vMax[i] : b_vMax[i];
         if ((a.m_vSize[i] + b.m_vSize[i]) < (fMax - fMin))
             return CollisionType::C_OUT;
     }
 
-    JVector<n> m_vMin, m_vMax;
+    JVector<n> m_vLeftTop, m_vMax;
     nCube<n> Intersect;
 
     for (int i = 0; i < n; i++) {
-        m_vMin[i] = a.m_vMin[i] > b.m_vMin[i] ? a.m_vMin[i] : b.m_vMin[i];
+        m_vLeftTop[i] = a.m_vLeftTop[i] > b.m_vLeftTop[i] ? a.m_vLeftTop[i] : b.m_vLeftTop[i];
         m_vMax[i] = a_vMax[i] < b_vMax[i] ? a_vMax[i] : b_vMax[i];
     }
 
-    Intersect.Set(m_vMin, m_vMax - m_vMin);
+    Intersect.Set(m_vLeftTop, m_vMax - m_vLeftTop);
     if (Intersect == a)
         return CollisionType::C_B_IN_A;
     if (Intersect == b)

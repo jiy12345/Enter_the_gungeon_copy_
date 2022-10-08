@@ -46,9 +46,9 @@ bool EnterTheGungeon::init()
 	m_vGunShots.resize(32);
 	for (JSoundChannel*& curGunshot : m_vGunShots) {
 		
-		curGunshot = new JSoundChannel(L"Gun1.wav");
+		curGunshot = new JSoundChannel(L"../data/sound/Gun1.wav");
 	}
-	m_pBGM = new JSoundChannel(L"TowerDefenseMusic01_Loop_Stereo.WAV");
+	m_pBGM = new JSoundChannel(L"../data/sound/TowerDefenseMusic01_Loop_Stereo.WAV");
 
 	m_vHeart.resize(m_pUser->m_fMaxHp);
 

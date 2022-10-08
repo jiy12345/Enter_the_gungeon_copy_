@@ -36,8 +36,8 @@ public:
 public:
 	float					m_fSpeed = 500.0f;
 public:
-	std::wstring				m_wstrVSName = L"DefaulTextureShader.hlsl";
-	std::wstring				m_wstrPSName = L"DefaulTextureShader.hlsl";
+	std::wstring				m_wstrVSName = L"../data/shader/DefaulTextureShader.hlsl";
+	std::wstring				m_wstrPSName = L"../data/shader/DefaulTextureShader.hlsl";
 	std::string					m_strVSFuncName = "VS";
 	std::string					m_strPSFuncName = "PS";
 	std::wstring				m_wstrTextureName = L"_RAINBOW.bmp";

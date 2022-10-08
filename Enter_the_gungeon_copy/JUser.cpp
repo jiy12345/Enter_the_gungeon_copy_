@@ -18,6 +18,12 @@ bool JUser::init()
     m_pGun = new gr_black_revolver;
     m_pGun->init();
 
+    m_pHand = new JBaseObject;
+    m_pHand->init();
+    m_pHand->m_wstrTextureName = L"../data/sprites/pilot.png";
+    m_pHand->m_rtUV.Set({ 405 / 988.0f, 24 / 811.0f }, { 4 / 988.0f, 4 / 811.0f });
+    m_pHand->m_rtArea.Set({ 0, 0 }, { 8, 8 });
+
     m_pGun->m_bIsUser = true;
 
     return true;
@@ -89,35 +95,42 @@ bool JUser::frame()
 bool JUser::render()
 {
     JBaseObject::render();
-    if (m_pGun&& m_bIsRoll == false) m_pGun->render();
+    if (m_pGun && m_bIsRoll == false) m_pGun->render();
+    if (m_pHand && m_bIsRoll == false) m_pHand->render();
     return true;
 }
 
 void JUser::setIdleSprite() {
     if (m_fAngle >= 150 || m_fAngle <= -120) {
-        m_curSprite = IDLE_LEFT;
+        m_curSprite = IDLE_WEAPON_LEFT;
     }
     else if (120 < m_fAngle && m_fAngle <= 150) {
-        m_curSprite = IDLE_LEFT_UP;
+        m_curSprite = IDLE_WEAPON_LEFT_UP;
     }
-    else if (60 < m_fAngle && m_fAngle <= 120) {
-        m_curSprite = IDLE_UP;
+    else if (90 < m_fAngle && m_fAngle <= 120) {
+        m_curSprite = IDLE_WEAPON_UP_RIGHT;
+    }
+    else if (60 < m_fAngle && m_fAngle <= 90) {
+        m_curSprite = IDLE_WEAPON_UP_LEFT;
     }
     else if (30 < m_fAngle && m_fAngle <= 60) {
-        m_curSprite = IDLE_RIGHT_UP;
+        m_curSprite = IDLE_WEAPON_RIGHT_UP;
     }
     else if (-60 < m_fAngle && m_fAngle <= 60) {
-        m_curSprite = IDLE_RIGHT;
+        m_curSprite = IDLE_WEAPON_RIGHT;
     }
-    else if (-120 < m_fAngle && m_fAngle <= -60) {
-        m_curSprite = IDLE_DOWN;
+    else if (-120 < m_fAngle && m_fAngle <= -90) {
+        m_curSprite = IDLE_WEAPON_DOWN_LEFT;
+    }
+    else if (-90 < m_fAngle && m_fAngle <= -60) {
+        m_curSprite = IDLE_WEAPON_DOWN_RIGHT;
     }
 }
 
 void JUser::setWalkSprite()
 {
     if (m_vDirection.length() != 0) {
-        m_curSprite += 6;
+        m_curSprite += 8;
     }
     //switch (m_iDirection) {
     //case DOWN:

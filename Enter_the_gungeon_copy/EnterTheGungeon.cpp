@@ -36,7 +36,7 @@ bool EnterTheGungeon::init()
 	m_pUser->init();
 	m_pMapObject = new Tile();
 
-	for (int i = MIN_ENEMY_SERIAL_NUM; i < MIN_ENEMY_SERIAL_NUM + 100;i++) {
+	for (int i = MIN_ENEMY_SERIAL_NUM; i < MIN_ENEMY_SERIAL_NUM + 10;i++) {
 		auto curEnemy = I_ObjectManager.GetRecycledEnemy<bullet_kin>();
 		curEnemy->init();
 		curEnemy->m_rtArea.m_vLeftTop[0] = rand() % MAP_SIZE_X - MAP_SIZE_X / 2;

@@ -18,17 +18,21 @@ enum MOVE_DIRECTION {
 class JBaseCharacter: public JBaseObject
 {
 public:
+	JBaseObject* m_pHand;
+	JGun*		 m_pGun;
+public:
 	float		m_fAngle;
 	int			m_iDirection;
 	JVector<2>	m_vDirection;
 public:
 	float	m_fHp;
 	float	m_fMaxHp;
-	JGun*	m_pGun;
+
 public:
 	bool	init() override;
 	bool	frame() override;
 	bool	render() override;
+	bool	release() override;
 	void	gunFrame();
 public:
 	virtual bool	checkCollision() = 0;

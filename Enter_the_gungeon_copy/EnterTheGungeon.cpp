@@ -59,6 +59,11 @@ bool EnterTheGungeon::init()
 
 bool EnterTheGungeon::frame()
 {
+	if (m_pUser->m_bIsDead && m_pUser->m_iIndexOfSprite == 8) {
+		m_bGameRun = false;
+		return true;
+	}
+
 	if (I_Input.GetKey(VK_LBUTTON) == KEY_PUSH)
 	{
 

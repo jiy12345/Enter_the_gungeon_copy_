@@ -37,12 +37,14 @@ enum SPRITE_USER {
 	WALKING_WEAPON_UP_LEFT,
 	WALKING_WEAPON_RIGHT_UP,
 	WALKING_WEAPON_LEFT_UP,
+	DEATH
 };
 
 class JUser : public JBaseCharacter
 {
 public:
 	bool  m_bIsRoll;
+	bool  m_bIsDead = false;
 	float m_fRollTime;
 public:
 	bool init() override;

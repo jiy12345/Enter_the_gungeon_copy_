@@ -94,7 +94,8 @@ bool JUser::frame()
 
 bool JUser::render()
 {
-    JBaseObject::render();
+    bool isEnd = JBaseObject::render();
+    if (m_bIsDead) return isEnd;
     if (m_pGun && m_bIsRoll == false) m_pGun->render();
     if (m_pHand && m_bIsRoll == false) m_pHand->render();
     return true;
@@ -195,6 +196,13 @@ bool JUser::checkCollision()
             if (JCollision<2>::CubeToCube(m_rtArea, curObject->m_rtArea) != CollisionType::C_OUT) {
                 if(I_ObjectManager.isEnemyBullet(curObjectNumber)) curObject->setRecycle();
                 m_fHp -= 1.0;
+
+                if (m_fHp == 0) {
+                    m_bIsDead = true;
+                    m_curSprite = DEATH;
+                    m_fStep = m_vSpriteInfo->at(m_curSprite).m_fTotalTime / m_vSpriteInfo->at(m_curSprite).m_iNumFrame;
+                    break;
+                }
             }
             curObject = nullptr;
         }
